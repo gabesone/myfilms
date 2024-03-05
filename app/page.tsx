@@ -1,15 +1,29 @@
 import Card from "@/app/components/Card";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { getTrendingMovies } from "./api";
 
-export default function Home() {
+export default async function Home() {
+  const trendingMovies = await getTrendingMovies();
+
   return (
-    <main className="container mx-auto mt-12 flex justify-center items-center flex-wrap">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-    </main>
+    <>
+      <div className="ml-48">
+        <div className="flex flex-wrap">
+          {trendingMovies.results.map((movies: any) => (
+            <Card
+              key={movies.id}
+              id={movies.id}
+              title={movies.title}
+              rating={movies.vote_average}
+              poster={movies.poster_path}
+            />
+          ))}
+        </div>
+        <div className="inline-block">
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 }
