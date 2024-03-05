@@ -10,7 +10,7 @@ export default async function Home() {
     <>
       <div className="ml-48">
         <div className="flex flex-wrap">
-          {trendingMovies.results.map((movies: any) => (
+          {trendingMovies!.results.map((movies: any) => (
             <Card
               key={movies.id}
               id={movies.id}
