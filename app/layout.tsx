@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex">
+      <body className="flex scroll-color">
         <SideBar />
         {children}
       </body>
