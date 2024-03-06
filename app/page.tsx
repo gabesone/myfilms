@@ -19,7 +19,7 @@ export default async function Home() {
     return randomMovie;
   };
 
-  const randomB = randomScenario();
+  let randomB = randomScenario();
 
   return (
     <>
