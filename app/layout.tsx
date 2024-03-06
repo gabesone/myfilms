@@ -17,10 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex bg-gradient-to-r from-[#1F2A32] to-[#3A4F5C]">
+      <body className="flex">
         <SideBar />
         {children}
-        {/* <Footer /> */}
       </body>
     </html>
   );

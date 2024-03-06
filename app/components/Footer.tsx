@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="my-16">
+    <footer className="my-16 bg-[#1A1C20]">
       <div className="">
         <p className="text-gray-500/80">
           Data provided by{" "}
@@ -16,7 +16,13 @@ const Footer = () => {
             target="_blank"
             className="inline-block relative top-1"
           >
-            <Image src={TMDB} alt="TMDB Logo" width={48} height={48} />
+            <Image
+              src={TMDB}
+              alt="TMDB Logo"
+              width={0}
+              height={0}
+              className="w-[48px] h-auto"
+            />
           </Link>
         </p>
       </div>

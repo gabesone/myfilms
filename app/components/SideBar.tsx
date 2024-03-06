@@ -10,7 +10,7 @@ import { Listbox } from "@headlessui/react";
 
 const SideBar = () => {
   return (
-    <div className="fixed min-w-48 max-w-48 h-full overflow-hidden">
+    <div className="fixed min-w-48 max-w-48 h-full overflow-hidden border-r-[1px] border-gray-400/40 bg-black">
       <div>
         <Image
           src={MyFilmsLogo}
