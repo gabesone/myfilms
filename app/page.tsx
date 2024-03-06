@@ -8,18 +8,16 @@ export default async function Home() {
   const trendingMovies = await getTrendingMovies();
 
   const randomScenario = () => {
-    let randomMovie = [];
-
     const randomNumber = Math.floor(
       Math.random() * trendingMovies.results.length
     );
-
+    let randomMovie = [];
     randomMovie.push(trendingMovies.results[randomNumber]);
 
     return randomMovie;
   };
 
-  let randomB = randomScenario();
+  const randomB = randomScenario();
 
   return (
     <>
@@ -31,6 +29,7 @@ export default async function Home() {
             backdrop={movie.backdrop_path}
             title={movie.title}
             description={movie.overview}
+            rating={movie.vote_average}
           />
         ))}
 

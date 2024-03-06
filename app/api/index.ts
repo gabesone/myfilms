@@ -80,7 +80,14 @@ const options = {
 export const getTrendingMovies = async () => {
   const response = await fetch(
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    options
+    {
+      cache: "no-cache",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+      },
+      method: "GET",
+    }
   );
 
   const result = await response.json();

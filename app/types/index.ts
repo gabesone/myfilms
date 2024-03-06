@@ -10,4 +10,5 @@ export interface HeroProps {
   backdrop: string;
   title: string;
   description: string;
+  rating: number;
 }

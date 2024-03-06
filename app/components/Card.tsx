@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { CardProps } from "../types";
-import { totalmem } from "os";
 
 // w-48 h-[18rem]
 // max-w-48 max-h-96
