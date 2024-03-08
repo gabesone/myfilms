@@ -1,23 +1,23 @@
-"use client";
-
 import React, { useState } from "react";
 import MyFilmsLogo from "@/public/my-films-logo.svg";
 import Image from "next/image";
 import { genres } from "../constants";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "next/link";
-import { Listbox } from "@headlessui/react";
 
 const SideBar = () => {
   return (
     <div className="fixed min-w-48 max-w-48 h-full overflow-hidden border-r-[1px] border-gray-400/40 bg-black">
       <div>
-        <Image
-          src={MyFilmsLogo}
-          alt="My Films Logo"
-          className="px-4 py-8 inline-block"
-          priority
-        />
+        <Link href="/" aria-label="Home">
+          {" "}
+          <Image
+            src={MyFilmsLogo}
+            alt="My Films Logo"
+            className="px-4 py-8 inline-block"
+            priority
+          />
+        </Link>
       </div>
       <div className="flex items-center justify-center">
         <SearchIcon fontSize="large" />

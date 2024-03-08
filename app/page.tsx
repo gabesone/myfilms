@@ -1,8 +1,8 @@
-import Card from "@/app/components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { getTrendingMovies } from "./api";
 import Backdrop from "./components/Backdrop";
+import { MovieCard } from "./components/Cards";
 
 export default async function Home() {
   const trendingMovies = await getTrendingMovies();
@@ -26,6 +26,7 @@ export default async function Home() {
         {randomB.map((movie) => (
           <Backdrop
             key={movie.id}
+            id={movie.id}
             backdrop={movie.backdrop_path}
             title={movie.title}
             description={movie.overview}
@@ -36,7 +37,7 @@ export default async function Home() {
         {/* Display a list of movies on theater */}
         <div className="flex flex-wrap bg-[#1A1C20] border-b-[1px] border-gray-400/40">
           {trendingMovies!.results.map((movies: any) => (
-            <Card
+            <MovieCard
               key={movies.id}
               id={movies.id}
               title={movies.title}

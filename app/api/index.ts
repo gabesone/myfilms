@@ -100,3 +100,21 @@ export const getTrendingMovies = async () => {
 //   const result = await response.json();
 //   return result;
 // }
+
+export const fetchMovieById = async (id: number) => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=credits,videos`,
+    {
+      // cache: "no-cache",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+      },
+      method: "GET",
+    }
+  );
+
+  const result = await response.json();
+  console.log(result);
+  return result;
+};
