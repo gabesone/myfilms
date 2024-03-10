@@ -1,6 +1,7 @@
 import { MovieCardDetailsProps, MovieCardProps } from "../types";
 import Image from "next/image";
 import Rating from "./Rating";
+import Link from "next/link";
 
 export const MovieCard = ({ id, title, rating, poster }: MovieCardProps) => {
   return (
@@ -9,14 +10,16 @@ export const MovieCard = ({ id, title, rating, poster }: MovieCardProps) => {
         key={id}
         className="mt-8 mb-4 h-96 rounded transition ease-in-out delay-75 hover:scale-105 duration-500 cursor-pointer"
       >
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${poster}`}
-          alt={title}
-          width={0}
-          height={0}
-          sizes="50vw"
-          className="w-[256px] h-auto rounded"
-        />
+        <Link href={`/films/${id}`}>
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${poster}`}
+            alt={title}
+            width={0}
+            height={0}
+            sizes="50vw"
+            className="w-[256px] h-auto rounded"
+          />
+        </Link>
       </div>
       <div className="w-64 break-words">
         <h3 className="text-[#D5D9DC] text-lg">{title}</h3>
@@ -74,9 +77,14 @@ export const MovieCardDetails = ({
 
             {/* Details */}
             <div className="">
-              <div>
+              <div className="text-[#D5D9DC]">
                 <p>Genre</p>
                 <p>{genre}</p>
+                <p>{released}</p>
+                <p>{runtime}min</p>
+                <p>{director}</p>
+                <p>{production}</p>
+                <p>{language}</p>
               </div>
             </div>
           </div>
