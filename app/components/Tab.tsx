@@ -1,6 +1,7 @@
 // components/Tab.js
 import { useState } from "react";
-import { TabProps } from "../types";
+import { Companies, Genres, Languages, TabProps } from "../types";
+import { MovieCard, MovieCardDetails } from "./Cards";
 
 const Tab = ({ defaultTab, tabs }: TabProps) => {
   const [activeTab, setActiveTab] = useState<number>(defaultTab);
@@ -10,19 +11,37 @@ const Tab = ({ defaultTab, tabs }: TabProps) => {
   };
 
   return (
-    <div className="tab">
-      <div className="tab-header">
+    <div>
+      <div className="flex flex-wrap space-x-8 text-xl text-gray-500/90 items-center justify-center">
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`tab-item ${activeTab === index ? "active" : ""}`}
+            className={`hover:text-white transition duration-300 cursor-pointer  ${
+              activeTab === index ? "text-white border-b-2 border-white" : ""
+            }`}
             onClick={() => handleTabClick(index)}
           >
-            {tab.title}
+            <div className="">{tab.nav}</div>
           </div>
         ))}
       </div>
-      <div className="tab-content">{tabs[activeTab].content}</div>
+      <div className="tab-content mt-16 text-white">
+        {/* {tabs[activeTab].storyline} */}
+        {activeTab === 0 ? (
+          <MovieCardDetails
+            poster={tabs[0].poster}
+            runtime={tabs[0].runtime}
+            overview={tabs[0].overview}
+            status={tabs[0].status}
+            genres={tabs[0].genres as Genres[]}
+            released={tabs[0].released}
+            languages={tabs[0].languages as Languages[]}
+            production={tabs[0].production as Companies[]}
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

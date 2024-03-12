@@ -37,19 +37,21 @@ export const PeopleCard = () => {};
 
 export const MovieCardDetails = ({
   status,
-  language,
+  languages,
   production,
   director,
   runtime,
   released,
-  genre,
+  genres,
   poster,
+  overview,
 }: MovieCardDetailsProps) => {
   return (
     <>
-      <div>
+      {console.log(languages)}
+      <div className="flex space-x-8 mx-16 ">
         {/* Poster */}
-        <div className="w-[350px] h-full">
+        <div className="">
           {
             <Image
               src={`https://image.tmdb.org/t/p/w500${poster}`}
@@ -57,29 +59,59 @@ export const MovieCardDetails = ({
               width={0}
               height={0}
               sizes="100vw"
-              className="rounded w-[350px] h-[500px]"
+              className="rounded min-w-[350px] min-h-[500px]"
             />
           }
         </div>
         {/* Movie or Tv Show Details */}
-        <div className="inline-block">
-          <div className="">
-            <div className="">
-              {" "}
-              <h2>Storyline</h2>
-              <p></p>
+        <div>
+          <div className="w-[70%]">
+            <div className="space-y-2">
+              <h2 className="text-2xl">Storyline</h2>
+              <p>{overview}</p>
             </div>
 
             {/* Details */}
-            <div className="">
-              <div className="text-[#D5D9DC]">
+            <div className="mt-8 flex space-x-4 ">
+              <div className="text-[#D5D9DC] space-y-2">
+                <p>Released</p>
+                <p>Runtime</p>
+                <p>Director</p>
                 <p>Genre</p>
-                <p>{genre}</p>
+                <p>Status</p>
+                <p>Language</p>
+                <p>Production</p>
+              </div>
+              <div className="space-y-2">
                 <p>{released}</p>
                 <p>{runtime}min</p>
                 <p>{director}</p>
-                <p>{production}</p>
-                <p>{language}</p>
+                <div>
+                  {genres.map((genre, index) => (
+                    <p className="inline">
+                      {genre.name}
+                      {genres.length - 1 !== index ? ", " : ""}
+                    </p>
+                  ))}
+                </div>
+                <p>{status}</p>
+                <div className="">
+                  {languages.map((value, index) => (
+                    <p className="inline">
+                      {value.english_name}
+                      {languages.length - 1 !== index ? ", " : ""}
+                    </p>
+                  ))}
+                </div>
+
+                <div>
+                  {production.map((value, index) => (
+                    <p className="inline">
+                      {value.name}
+                      {production.length - 1 !== index ? ", " : ""}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

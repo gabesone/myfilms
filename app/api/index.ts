@@ -79,20 +79,29 @@ const options = {
 // .catch((err) => console.error(err));
 
 export const getTrendingMovies = async (): Promise<any> => {
-  const response = await fetch(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    {
-      cache: "no-cache",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-      },
-      method: "GET",
-    }
-  );
+  try {
+    const response = await fetch(
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+      {
+        cache: "no-cache",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+        },
+        method: "GET",
+      }
+    );
 
-  const result = await response.json();
-  return result;
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
 };
 
 // export const getImagePoster = async (path: string) => {

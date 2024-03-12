@@ -15,7 +15,7 @@ export interface HeroProps {
 }
 
 export interface MovieCardProps {
-  id: number;
+  id?: number;
   title: string;
   rating: number;
   poster: string;
@@ -35,19 +35,28 @@ export interface RatingProps {
 }
 
 export interface MovieCardDetailsProps {
-  status: string;
-  language: string;
-  production: string[];
+  status: string | undefined;
+  languages: Languages[];
+  production: Companies[];
   director: string;
-  runtime: number;
-  released: string;
-  genre: string[];
-  poster: string;
+  runtime: number | undefined;
+  released: string | undefined;
+  genres: Genres[];
+  poster: string | undefined;
+  overview: string | undefined;
 }
 
 export interface TabItem {
-  title: string;
-  content: string;
+  nav: string;
+  overview?: string;
+  poster?: string;
+  released?: string | undefined;
+  languages?: object[];
+  director?: Director[] | undefined;
+  runtime?: number;
+  status?: string;
+  genres?: object[];
+  production?: object[];
 }
 
 export interface TabProps {
@@ -56,5 +65,36 @@ export interface TabProps {
 }
 
 export interface MovieData {
+  id: number;
   title: string;
+  overview: string;
+  vote_average: number;
+  runtime: number;
+  genres: object[];
+  release_date: string;
+  director: Director[];
+  spoken_languages: object[];
+  production_companies: object[];
+  poster: string;
+  status: string;
+  backdrop_path: string;
+  poster_path: string;
+}
+
+export interface Genres {
+  id: number;
+  name: string;
+}
+
+export interface Languages {
+  english_name: string;
+  name: string;
+}
+
+export interface Companies {
+  name: string;
+}
+
+interface Director {
+  name: string;
 }

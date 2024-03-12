@@ -23,41 +23,41 @@
 //   }, []);
 
 //   return (
-//     <div className="ml-48 w-full bg-[#1A1C20]">
-//       <Backdrop
-//         backdrop={movie.backdrop_path}
-//         title={movie.title}
-//         description={movie.overview}
-//         id={id}
-//         rating={movie.vote_average}
-//       />
+// <div className="ml-48 w-full bg-[#1A1C20]">
+//   <Backdrop
+//     backdrop={movie.backdrop_path}
+//     title={movie.title}
+//     description={movie.overview}
+//     id={id}
+//     rating={movie.vote_average}
+//   />
 
-//       <div>
-//         <div className="mt-8 mb-16">
-//           <p id="overview">nav 1</p>
-//           <p id="videos">nav 2</p>
-//           <p id="photos">nav 3</p>
-//         </div>{" "}
-//       </div>
+//   <div>
+//     <div className="mt-8 mb-16">
+//       <p id="overview">nav 1</p>
+//       <p id="videos">nav 2</p>
+//       <p id="photos">nav 3</p>
+//     </div>{" "}
+//   </div>
 
-//       {/* Movie or Tv Show Details */}
-//       <div>
-//         <MovieCardDetails
-//           status={movie.status}
-//           language={movie.spoken_languages}
-//           production={movie.production_companies.map(
-//             (company: any) => company.name
-//           )}
-//           director=""
-//           runtime={movie.runtime}
-//           released={movie.released_date}
-//           genre={movie.genres.map((genre: any) => genre.name)}
-//           poster={movie.poster_path}
-//         />
-//       </div>
+//   {/* Movie or Tv Show Details */}
+//   <div>
+//     <MovieCardDetails
+//       status={movie.status}
+//       language={movie.spoken_languages}
+//       production={movie.production_companies.map(
+//         (company: any) => company.name
+//       )}
+//       director=""
+//       runtime={movie.runtime}
+//       released={movie.released_date}
+//       genre={movie.genres.map((genre: any) => genre.name)}
+//       poster={movie.poster_path}
+//     />
+//   </div>
 
-//       <Footer />
-//     </div>
+//   <Footer />
+// </div>
 //   );
 // };
 
@@ -69,16 +69,18 @@ import { MovieData, TabItem } from "@/app/types";
 import React, { useEffect, useState } from "react";
 import { fetchMovieById } from "@/app/api";
 import { unstable_noStore as noStore } from "next/cache";
+import Backdrop from "@/app/components/Backdrop";
+import Footer from "@/app/components/Footer";
 
 const IndexPage = ({ params }: { params: { id: number } }) => {
   noStore();
-  const [data, setData] = useState<MovieData | null>(null);
+  const [movie, setMovie] = useState<MovieData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const responseData = await fetchMovieById(params.id);
-        setData(responseData);
+        setMovie(responseData);
         console.log(responseData);
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -88,18 +90,49 @@ const IndexPage = ({ params }: { params: { id: number } }) => {
     fetchData();
   }, []);
 
-  const tabs = [
-    { title: "Tab 1", content: "Content of Tab 1" },
-    { title: "Tab 2", content: "Content of Tab 2" },
-    { title: "Tab 3", content: "Content of Tab 3" },
+  const tabs: TabItem[] = [
+    {
+      nav: "OVERVIEW",
+      overview: movie?.overview,
+      runtime: movie?.runtime,
+      status: movie?.status,
+      poster: movie?.poster_path,
+      genres: movie?.genres,
+      released: movie?.release_date,
+      languages: movie?.spoken_languages,
+      production: movie?.production_companies,
+      director: movie?.director,
+    },
+    { nav: "VIDEOS" },
+    { nav: "PHOTOS" },
   ];
 
-  return (
-    <div className="ml-48">
-      <h1>Tab Example</h1>
-      <Tab defaultTab={0} tabs={tabs} />
+  // console.log(movie?.spoken_languages);
 
-      <div>{data ? <p>{data.title}</p> : <p>Loading...</p>}</div>
+  return (
+    <div className="ml-48 w-full bg-[#1A1C20]">
+      <div>
+        {movie ? (
+          <>
+            <Backdrop
+              backdrop={movie.backdrop_path}
+              title={movie.title}
+              description={movie.overview}
+              id={params.id}
+              rating={movie.vote_average}
+            />
+            <div className="mt-8">
+              <Tab defaultTab={0} tabs={tabs} />
+            </div>
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+
+      <div className="px-8 border-t-[1px] border-gray-400/40 mt-12">
+        <Footer />
+      </div>
     </div>
   );
 };

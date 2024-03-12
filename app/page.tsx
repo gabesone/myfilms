@@ -46,7 +46,7 @@ export default async function Home() {
             />
           ))}
         </div>
-        <div className="inline-block m-8 px-4">
+        <div className="inline-block m-4 px-4">
           <Footer />
         </div>
       </div>
