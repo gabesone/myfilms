@@ -65,11 +65,12 @@
 //   ],
 // };
 
+import { log } from "console";
+
 const options = {
   method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
+  params: {
+    api_key: process.env.API_KEY,
   },
 };
 
@@ -77,7 +78,7 @@ const options = {
 // .then((response) => console.log(response))
 // .catch((err) => console.error(err));
 
-export const getTrendingMovies = async () => {
+export const getTrendingMovies = async (): Promise<any> => {
   const response = await fetch(
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
     {
@@ -101,20 +102,23 @@ export const getTrendingMovies = async () => {
 //   return result;
 // }
 
-export const fetchMovieById = async (id: number) => {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=credits,videos`,
-    {
-      // cache: "no-cache",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${process.env.BEARER_TOKEN}`,
-      },
-      method: "GET",
-    }
-  );
+//api.themoviedb.org/3/movie/932420?api_key=0155c5592802b437022f60597d749a90
+// https: const key = process.env.API_TOKEN;
 
-  const result = await response.json();
-  console.log(result);
-  return result;
+export const fetchMovieById = async (id: number): Promise<any> => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_TOKEN}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const result = response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
 };

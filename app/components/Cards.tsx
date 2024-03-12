@@ -48,11 +48,6 @@ export const MovieCardDetails = ({
   return (
     <>
       <div>
-        <div className="mt-8 mb-16">
-          <p>nav 1</p>
-          <p>nav 2</p>
-          <p>nav 3</p>
-        </div>{" "}
         {/* Poster */}
         <div className="w-[350px] h-full">
           {

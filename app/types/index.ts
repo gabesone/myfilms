@@ -44,3 +44,17 @@ export interface MovieCardDetailsProps {
   genre: string[];
   poster: string;
 }
+
+export interface TabItem {
+  title: string;
+  content: string;
+}
+
+export interface TabProps {
+  defaultTab: number;
+  tabs: TabItem[];
+}
+
+export interface MovieData {
+  title: string;
+}
