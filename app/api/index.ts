@@ -102,9 +102,6 @@ export const getTrendingMovies = async (): Promise<any> => {
 //   return result;
 // }
 
-//api.themoviedb.org/3/movie/932420?api_key=0155c5592802b437022f60597d749a90
-// https: const key = process.env.API_TOKEN;
-
 export const fetchMovieById = async (id: number): Promise<any> => {
   try {
     const response = await fetch(
