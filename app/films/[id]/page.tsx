@@ -102,6 +102,7 @@ const IndexPage = ({ params }: { params: { id: number } }) => {
       languages: movie?.spoken_languages,
       production: movie?.production_companies,
       director: movie?.director,
+      homepage: movie?.homepage,
     },
     { nav: "VIDEOS" },
     { nav: "PHOTOS" },

@@ -44,19 +44,21 @@ export interface MovieCardDetailsProps {
   genres: Genres[];
   poster: string | undefined;
   overview: string | undefined;
+  homepage: string;
 }
 
 export interface TabItem {
   nav: string;
   overview?: string;
   poster?: string;
-  released?: string | undefined;
+  released?: string;
   languages?: object[];
-  director?: Director[] | undefined;
+  director?: object[];
   runtime?: number;
   status?: string;
   genres?: object[];
   production?: object[];
+  homepage?: string;
 }
 
 export interface TabProps {
@@ -72,13 +74,14 @@ export interface MovieData {
   runtime: number;
   genres: object[];
   release_date: string;
-  director: Director[];
+  director: object[];
   spoken_languages: object[];
   production_companies: object[];
   poster: string;
   status: string;
   backdrop_path: string;
   poster_path: string;
+  homepage: string;
 }
 
 export interface Genres {

@@ -37,6 +37,7 @@ const Tab = ({ defaultTab, tabs }: TabProps) => {
             released={tabs[0].released}
             languages={tabs[0].languages as Languages[]}
             production={tabs[0].production as Companies[]}
+            homepage={tabs[0].homepage!}
           />
         ) : (
           ""

@@ -19,7 +19,7 @@ const SideBar = () => {
           />
         </Link>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center text-[#6D7479]">
         <SearchIcon fontSize="large" />
       </div>
       <div className="mt-8">
