@@ -94,7 +94,7 @@ export const MovieCardDetails = ({
                   <p>{director}</p>
                   <div>
                     {genres.map((genre, index) => (
-                      <p className="inline">
+                      <p className="inline" key={index}>
                         {genre.name}
                         {genres.length - 1 !== index ? ", " : ""}
                       </p>
@@ -103,7 +103,7 @@ export const MovieCardDetails = ({
                   <p>{status}</p>
                   <div className="">
                     {languages.map((value, index) => (
-                      <p className="inline">
+                      <p className="inline" key={index}>
                         {value.english_name}
                         {languages.length - 1 !== index ? ", " : ""}
                       </p>
@@ -112,7 +112,7 @@ export const MovieCardDetails = ({
 
                   <div>
                     {production.map((value, index) => (
-                      <p className="inline">
+                      <p className="inline" key={index}>
                         {value.name}
                         {production.length - 1 !== index ? ", " : ""}
                       </p>
