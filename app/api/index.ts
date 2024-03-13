@@ -114,7 +114,7 @@ export const getTrendingMovies = async (): Promise<any> => {
 export const fetchMovieById = async (id: number): Promise<any> => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_TOKEN}&append_to_response=credits`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_TOKEN}&append_to_response=credits`
     );
 
     if (!response.ok) {
