@@ -1,11 +1,13 @@
-import { MovieCardDetailsProps, MovieCardProps } from "../types";
+import {
+  MovieCardDetailsProps,
+  MovieCardProps,
+  PeopleCardProps,
+} from "../types";
 import Image from "next/image";
 import Rating from "./Rating";
 import Link from "next/link";
 import LinkIcon from "@mui/icons-material/Link";
 import LinkOffIcon from "@mui/icons-material/LinkOff";
-import { blue } from "@mui/material/colors";
-import Carousel from "./Carousel";
 
 export const MovieCard = ({ id, title, rating, poster }: MovieCardProps) => {
   return (
@@ -37,13 +39,39 @@ export const TvCard = () => {
   return <div>Cards</div>;
 };
 
-export const PeopleCard = () => {};
+export const PeopleCard = ({
+  id,
+  name,
+  character,
+  profile_path,
+}: PeopleCardProps) => {
+  return (
+    <div className="mx-auto">
+      <div>
+        <Link href={"#"}>
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+            alt={`Photo of ${name}`}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="rounded min-w-[250px] min-h-[300px]"
+          />
+        </Link>
+      </div>
+      <div className="">
+        <h3 className="">Name of Actor</h3>
+        <p className="">as</p>
+      </div>
+    </div>
+  );
+};
 
 export const MovieCardDetails = ({
   status,
   languages,
   production,
-  director,
+  credits,
   runtime,
   released,
   genres,
@@ -51,9 +79,11 @@ export const MovieCardDetails = ({
   overview,
   homepage,
 }: MovieCardDetailsProps) => {
+  // Get the director of the movie or Tv Show
+  const directorArr = credits.crew.filter((cr) => cr.job === "Director");
+
   return (
     <>
-      {console.log(languages)}
       <div>
         <div className="flex space-x-8 mx-16">
           {/* Poster */}
@@ -91,7 +121,11 @@ export const MovieCardDetails = ({
                 <div className="space-y-2">
                   <p>{released}</p>
                   <p>{runtime}min</p>
-                  <p>{director}</p>
+                  <div>
+                    {directorArr.map((director, index) => (
+                      <p key={index}>{director.name}</p>
+                    ))}
+                  </div>
                   <div>
                     {genres.map((genre, index) => (
                       <p className="inline" key={index}>
@@ -145,9 +179,22 @@ export const MovieCardDetails = ({
             <h2 className="text-2xl">Cast</h2>
           </div>
 
-          <div className="mx-16">
-            <Carousel />
-            <p>a</p>
+          <div className="w-full">
+            {credits.cast.map((ca) => (
+              <PeopleCard
+                key={ca.id}
+                id={ca.id}
+                name={ca.name}
+                character={ca.character}
+                profile_path={ca.profile_path}
+              />
+            ))}
+            <PeopleCard
+              id={2}
+              name={"test"}
+              profile_path={"test"}
+              character={"test"}
+            />
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import { getTrendingMovies } from "./api";
 import Backdrop from "./components/Backdrop";
 import { MovieCard } from "./components/Cards";
+import React from "react";
 
 export default async function Home() {
   const trendingMovies = await getTrendingMovies();

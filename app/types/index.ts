@@ -38,13 +38,27 @@ export interface MovieCardDetailsProps {
   status: string | undefined;
   languages: Languages[];
   production: Companies[];
-  director: string;
   runtime: number | undefined;
   released: string | undefined;
   genres: Genres[];
   poster: string | undefined;
   overview: string | undefined;
   homepage: string;
+  credits: { cast: Cast[]; crew: Crew[] };
+}
+
+export interface Cast {
+  id: number;
+  character: string;
+  profile_path: string;
+  name: string;
+}
+
+export interface Crew {
+  name: string;
+  known_for_department: string;
+  job: string;
+  id: number;
 }
 
 export interface TabItem {
@@ -59,6 +73,7 @@ export interface TabItem {
   genres?: object[];
   production?: object[];
   homepage?: string;
+  credits?: { cast: Cast[]; crew: Crew[] };
 }
 
 export interface TabProps {
@@ -82,6 +97,7 @@ export interface MovieData {
   backdrop_path: string;
   poster_path: string;
   homepage: string;
+  credits: { cast: Cast[]; crew: Crew[] };
 }
 
 export interface Genres {
@@ -98,6 +114,13 @@ export interface Companies {
   name: string;
 }
 
-interface Director {
+export interface Director {
   name: string;
+}
+
+export interface PeopleCardProps {
+  id: number;
+  name: string;
+  profile_path: string;
+  character: string;
 }

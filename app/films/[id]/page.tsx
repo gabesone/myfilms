@@ -101,12 +101,29 @@ const IndexPage = ({ params }: { params: { id: number } }) => {
       released: movie?.release_date,
       languages: movie?.spoken_languages,
       production: movie?.production_companies,
-      director: movie?.director,
+      credits: movie?.credits,
       homepage: movie?.homepage,
     },
     { nav: "VIDEOS" },
     { nav: "PHOTOS" },
   ];
+
+  // interface Movie {
+  //   title: string;
+  //   credits?: {
+  //     crew?: {
+  //       name: string;
+  //       role: string;
+  //       // Add other properties if needed
+  //     }[];
+  //     // Add other properties if needed
+  //   };
+  //   director?: {
+  //     name: string;
+  //     role: string;
+  //     // Add other properties if needed
+  //   };
+  // }
 
   // console.log(movie?.spoken_languages);
 

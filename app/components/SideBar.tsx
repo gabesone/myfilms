@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const SideBar = () => {
   return (
-    <div className="fixed min-w-48 max-w-48 h-full overflow-hidden border-r-[1px] border-gray-400/40 bg-black z-10">
+    <div className="fixed min-w-48 max-w-48 h-full overflow-hidden border-r-[1px] border-gray-400/40 bg-black">
       <div>
         <Link href="/" aria-label="Home">
           {" "}

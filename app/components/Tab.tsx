@@ -1,6 +1,14 @@
 // components/Tab.js
 import { useState } from "react";
-import { Companies, Genres, Languages, TabProps } from "../types";
+import {
+  Cast,
+  Companies,
+  Crew,
+  Director,
+  Genres,
+  Languages,
+  TabProps,
+} from "../types";
 import { MovieCard, MovieCardDetails } from "./Cards";
 
 const Tab = ({ defaultTab, tabs }: TabProps) => {
@@ -38,6 +46,7 @@ const Tab = ({ defaultTab, tabs }: TabProps) => {
             languages={tabs[0].languages as Languages[]}
             production={tabs[0].production as Companies[]}
             homepage={tabs[0].homepage!}
+            credits={tabs[0].credits as { cast: Cast[]; crew: Crew[] }}
           />
         ) : (
           ""
