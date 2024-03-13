@@ -8,6 +8,7 @@ import Rating from "./Rating";
 import Link from "next/link";
 import LinkIcon from "@mui/icons-material/Link";
 import LinkOffIcon from "@mui/icons-material/LinkOff";
+import ImageIcon from "@mui/icons-material/Image";
 
 export const MovieCard = ({ id, title, rating, poster }: MovieCardProps) => {
   return (
@@ -47,21 +48,27 @@ export const PeopleCard = ({
 }: PeopleCardProps) => {
   return (
     <div className="mx-auto">
-      <div>
+      <div className="my-4 transition hover:scale-105 duration-300">
         <Link href={"#"}>
-          <Image
-            src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-            alt={`Photo of ${name}`}
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="rounded min-w-[250px] min-h-[300px]"
-          />
+          {profile_path ? (
+            <Image
+              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+              alt={`Photo of ${name}`}
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="rounded w-full min-h-[385px] max-h-[385px]"
+            />
+          ) : (
+            <div className="w-full min-h-[385px] bg-gray-600/60 rounded flex items-center justify-center">
+              <ImageIcon fontSize="large" />
+            </div>
+          )}
         </Link>
       </div>
-      <div className="">
-        <h3 className="">Name of Actor</h3>
-        <p className="">as</p>
+      <div className="w-64">
+        <h3 className="">{name}</h3>
+        <p className="text-sm text-[#6C7C85]">as {character}</p>
       </div>
     </div>
   );
@@ -175,26 +182,22 @@ export const MovieCardDetails = ({
 
         {/* Cast */}
         <div className="my-8">
-          <div className="mx-16">
+          <div className="mx-16 my-4">
             <h2 className="text-2xl">Cast</h2>
           </div>
-
-          <div className="w-full">
-            {credits.cast.map((ca) => (
-              <PeopleCard
-                key={ca.id}
-                id={ca.id}
-                name={ca.name}
-                character={ca.character}
-                profile_path={ca.profile_path}
-              />
-            ))}
-            <PeopleCard
-              id={2}
-              name={"test"}
-              profile_path={"test"}
-              character={"test"}
-            />
+          {/* max-w-[106.91rem]  */}
+          <div className="flex max-w-[105.96rem] overflow-x-scroll mx-2 overflow-y-hidden">
+            <div className="flex ml-14 gap-3 my-4 mr-2">
+              {credits.cast.map((ca) => (
+                <PeopleCard
+                  key={ca.id}
+                  id={ca.id}
+                  name={ca.name}
+                  character={ca.character}
+                  profile_path={ca.profile_path}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -1,14 +1,6 @@
 // components/Tab.js
 import { useState } from "react";
-import {
-  Cast,
-  Companies,
-  Crew,
-  Director,
-  Genres,
-  Languages,
-  TabProps,
-} from "../types";
+import { Cast, Companies, Crew, Genres, Languages, TabProps } from "../types";
 import { MovieCard, MovieCardDetails } from "./Cards";
 
 const Tab = ({ defaultTab, tabs }: TabProps) => {

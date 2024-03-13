@@ -50,9 +50,10 @@ const Backdrop = ({ backdrop, title, description, rating, id }: HeroProps) => {
         height={0}
         priority
         sizes="100vw"
-        className="w-[75%] h-full relative left-[25%] z-0 object-cover"
+        className="w-[75%] h-full relative left-[25%] object-cover"
       />
-      <p className="absolute top-2 left-4 text-white">as</p>
+      {/* Under image Add z-index to see */}
+      <p className="absolute top-2 left-4 text-white"></p>
     </div>
   );
 };
