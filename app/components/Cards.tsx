@@ -49,7 +49,7 @@ export const PeopleCard = ({
   return (
     <div className="mx-auto">
       <div className="my-4 transition hover:scale-105 duration-300">
-        <Link href={"#"}>
+        <Link href={`/people/${id}`}>
           {profile_path ? (
             <Image
               src={`https://image.tmdb.org/t/p/w500${profile_path}`}
@@ -70,6 +70,15 @@ export const PeopleCard = ({
         <h3 className="">{name}</h3>
         <p className="text-sm text-[#6C7C85]">as {character}</p>
       </div>
+    </div>
+  );
+};
+
+export const PeopleCardDetails = (id: number) => {
+  return (
+    <div>
+      <p>test</p>
+      <div></div>
     </div>
   );
 };
@@ -182,7 +191,7 @@ export const MovieCardDetails = ({
 
         {/* Cast */}
         <div className="my-8">
-          <div className="mx-16 my-4">
+          <div className="mx-16">
             <h2 className="text-2xl">Cast</h2>
           </div>
           {/* max-w-[106.91rem]  */}

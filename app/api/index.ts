@@ -124,7 +124,24 @@ export const fetchMovieById = async (id: number): Promise<any> => {
     const result = response.json();
     return result;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching movie by id:", error);
+    throw error;
+  }
+};
+
+export const fetchPeopleById = async (id: number) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.API_KEY}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const result = response.json();
+    return result;
+  } catch (error) {
+    console.log("Error fetching people by id:", error);
     throw error;
   }
 };
